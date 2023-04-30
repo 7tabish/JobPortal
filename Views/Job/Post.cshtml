@@ -1,0 +1,58 @@
+﻿<div class="job-posting">
+    <h2>Post a Job</h2>
+    <form>
+        <div class="form-group">
+            <label for="job-title">Job Title:</label>
+            <input type="text" id="job-title" name="job-title" required>
+        </div>
+        <div class="form-group">
+            <label for="company-name">Company Name:</label>
+            <input type="text" id="company-name" name="company-name" required>
+        </div>
+        <div class="form-group">
+            <label for="location">Location:</label>
+            <input type="text" id="location" name="location" required>
+        </div>
+        <div class="form-group">
+            <label for="job-description">Job Description:</label>
+            <textarea id="job-description" name="job-description" rows="5" required></textarea>
+        </div>
+        <div class="form-group">
+            <label for="job-requirements">Job Requirements:</label>
+            <div class="requirements-wrapper">
+                <div class="requirement">
+                    <input type="text" class="requirement-input" name="job-requirement[]" required>
+                    <button type="button" class="remove-requirement">-</button>
+                </div>
+            </div>
+            <button type="button" id="add-requirement">Add Requirement</button>
+        </div>
+
+           <div class="form-group">
+      <label for="job-qualifications">Job Qualifications:</label>
+      <select id="job-qualifications" name="job-qualifications">
+        <option value="">-- Select Qualification --</option>
+        <option value="Bachelor's Degree">Bachelor's Degree</option>
+        <option value="Master's Degree">Master's Degree</option>
+        <option value="PhD">PhD</option>
+      </select>
+    </div>
+    <div class="form-group">
+            <label for="salary-range">Salary Range:</label> 
+            <select id="salary-range" name="salary-range">
+                <option value="0-25k">$0 - $25k</option>
+                <option value="25k-50k">$25k - $50k</option>
+                <option value="50k-75k">$50k - $75k</option>
+                <option value="75k-100k">$75k - $100k</option>
+                <option value="100k+">$100k+</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="how-to-apply">How to Apply:</label>
+            <textarea id="how-to-apply" name="how-to-apply" rows="5" required></textarea>
+        </div>
+        <div class="form-group">
+            <button type="submit">Post Job</button>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,94 @@
+﻿@model IEnumerable<JobPortal.DTOs.ListJobDTO>
+
+@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+
+
+
+@{
+    ViewData["Title"] = "Jobs Listing";
+}
+<div class="job-listings">
+    <div class="job-filters">
+        <h2>Filter by:</h2>
+        <label for="job-type">Job Type:</label>
+        <select id="jobType">
+            <option value="">All</option>
+            <option value="fullTime">Full-time</option>
+            <option value="partTime">Part-time</option>
+            <option value="contract">Contract</option>
+        </select>
+        <label for="location">Location:</label>
+        <select id="location">
+            <option value="">All</option>
+            <option value="Islamabad">Islamabad</option>
+            <option value="Lahore">Lahore</option>
+            <option value="Karachi">Karachi</option>
+        </select>
+        <label for="salary">Salary Range ($) / Anum:</label>
+        <select id="salary">
+            <option value="">All</option>
+            <option value="0-50000">0 - 50,000</option>
+            <option value="50000-100000">50,000 - 100,000</option>
+            <option value="100000+">100,000+</option>
+        </select>
+        <label for="sort-by">Sort by:</label>
+        <select id="sortBy">
+            <option value="date">Date Posted</option>
+            <option value="salary">Salary Range</option>
+        </select>
+        <button type="button" id="btnFilter" onclick="filterJobs()" >Search</button>
+
+    </div>
+
+    <div class="job-list">
+    <!--map data from model to view-->
+    @foreach (var item in Model) {
+
+            <div class="job-item">
+                
+                <input type ="hidden" value=@Html.DisplayFor(modelItem => item.id)/>
+                <h3>       @Html.DisplayFor(modelItem => item.Title)</h3>
+                <p><b>       @Html.DisplayFor(modelItem => item.CompanyName)</b></p>
+                <p>       @Html.DisplayFor(modelItem => item.Location)</p>
+                <p>       @Html.DisplayFor(modelItem => item.Description)</p>
+                <small>       @Html.DisplayFor(modelItem => item.Salary)</small>
+                    <br/>
+                <small>       @Html.DisplayFor(modelItem => item.CreationDate)</small>
+                <br/>
+                <input type="button" value="Details" onclick="location.href='@Url.Action("Details", "Job",new{id = item.id})'" />
+            </div>
+         
+
+    }
+    </div> <!--close job list-->
+</div>
+
+                <script>
+    function filterJobs() {
+        var location=salary=jobType=sortBy="";
+
+        location = document.getElementById("location");
+        location = location.options[location.selectedIndex];
+        location = location.value;
+        console.log(location);
+
+        jobType = document.getElementById("jobType");
+        jobType = jobType.options[jobType.selectedIndex].value;
+
+        salary = document.getElementById("salary");
+        salary = salary.options[salary.selectedIndex].value;
+
+        sortBy = document.getElementById("sortBy");
+        sortBy = sortBy.options[sortBy.selectedIndex].value;
+
+
+        var url = "/Job/Filter?location=" + location+ "&jobType=" + jobType + "&salary="+salary+"&sortBy="+sortBy;
+		window.location.href = url;
+        console.log(jobType+salary+sortBy);
+        
+    }
+                </script>

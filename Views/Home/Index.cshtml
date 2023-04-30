@@ -1,0 +1,36 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+	<main>
+		<div class="search-container">
+			<input type="text" id="search-keywords" placeholder="Keywords">
+			<input type="text" id="search-location" placeholder="Location">
+	
+			<button type="button" id="search-button" onclick="searchJobs()">Search</button>
+		</div>
+
+	</main>
+	<div class="popular-container">
+		<a href="#">Engineering</a>
+		<a href="#">Sales</a>
+		<a href="#">Marketing</a>
+		<a href="#">Design</a>
+		<a href="#">Customer Service</a>
+		<a href="#">Google</a>
+		<a href="#">Amazon</a>
+		<a href="#">Facebook</a>
+		<a href="#">Microsoft</a>
+		<a href="#">Apple</a>
+	</div>
+</div>
+
+<script>
+	function searchJobs(){
+		var keywords = document.getElementById("search-keywords").value;
+		var location = document.getElementById("search-location").value;
+		var url = "/Job/Index?keywords=" + keywords + "&location=" + location;
+		window.location.href = url;
+	}
+</script>
